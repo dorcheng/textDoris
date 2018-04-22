@@ -2,6 +2,8 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const db = require('./db');
+require('./db/models/question');
 
 const app = express();
 
@@ -23,6 +25,9 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 8080;
-const server = app.listen(port, () => {
-  console.log('The server is listening on port', port);
+
+db.sync().then(() => {
+  app.listen(port, () => {
+    console.log('The server is listening on port', port);
+  });
 });

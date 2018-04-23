@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Answer, Question } = require('../../db/models');
+const { askQuestion } = require('../../twilioFuncs');
 
 router.get('/', function(req, res, next) {
   Question.findAll({
@@ -25,6 +26,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+  askQuestion(req.body.body);
   return Question.create(req.body)
     .then(newQuestion => res.json(newQuestion))
     .catch(next);

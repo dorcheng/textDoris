@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const db = require('./db');
-require('./db/models/question');
+require('./db/models/');
 
 const app = express();
 

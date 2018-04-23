@@ -4,6 +4,7 @@
   "description": "A web application that uses Twilio API",
   "main": "index.js",
   "scripts": {
+    "deploy": "script/deploy",
     "start": "node server",
     "start-dev": "webpack && nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"

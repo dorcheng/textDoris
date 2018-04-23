@@ -22,12 +22,14 @@ class AskBox extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>Ask me anything :)</div>
-        <label>Name</label>
-        <input name="name" type="text" placeholder="SweetToothAnonymous" />
-        <textarea name="question" type="text" placeholder="What is your favorite dessert spot in NYC?" />
-      </form>
+      <div className = "ask-box">
+        <form onSubmit={this.handleSubmit}>
+          <div>Ask me anything :)</div>
+          <label>Name:</label>
+          <input name="name" type="text" placeholder="SweetToothAnonymous" />
+          <textarea name="question" type="text" placeholder="What is your favorite dessert spot in NYC?" />
+        </form>
+      </div>
     );
   }
 }

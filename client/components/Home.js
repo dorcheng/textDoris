@@ -20,7 +20,7 @@ export default class Home extends Component {
     return (
       <div className="container">
         <div className="feed-panel">
-          {this.state.questions.map(question => {
+          {this.state.questions.length > 0 && this.state.questions.map(question => {
             return (
               <div key={question.id} className="feed-item">
                 <span className="author">{question.author}</span>

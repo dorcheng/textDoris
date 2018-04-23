@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Home extends Component {
   constructor(){
     super();
       this.state = {
-        feed: [{id: 1, question: 'What is your name', answer: 'Doris'}, {id: 2, question: 'What is your fav fruit', answer: 'mango'}]
+        questions: []
       };
   }
+  componentDidMount() {
+    axios.get('/api/questions').then(res => {
+      this.setState({ questions: res.data });
+    })
+    .catch(error => console.log(error));
+  }
+
   render() {
     return (
-      <div>
-        <ul>
-          {this.state.feed.map(item => {
-            return (
-              <li key={item.id}>
-                <div>
-                  <span>{item.question}</span>
-                  <p>{item.answer}</p>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+      <div className="feed-panel">
+        {this.state.questions.map(question => {
+          return (
+            <div key={question.id} className="feed-item">
+              <span className="author">{question.author}</span>
+              <span className="dateTime">{question.createdAt}</span>
+              <p className = "question">{question.body}</p>
+              <p className = "answer">{question.answer.answer}</p>
+            </div>
+          );
+        })}
       </div>
     );
   }
